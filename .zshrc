@@ -127,18 +127,24 @@ source $ZSH/oh-my-zsh.sh
 # jdk 11
 
 # Added by Google Cloud installer
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/philippa.main/exec -l /bin/zsh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/philippa.main/exec -l /bin/zsh/google-cloud-sdk/path.zsh.inc'; fi
-
 # Added by Google Cloud installer
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/philippa.main/exec -l /bin/zsh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/philippa.main/exec -l /bin/zsh/google-cloud-sdk/completion.zsh.inc'; fi
-
 # For investigating Kubernetes pods
 alias k='kubectl'
 alias kprod='gcloud container clusters get-credentials delivery-platform --zone europe-west4-a --project at-delivery-platform-prod && echo Find namespace with \`kubectl get namespace\` then set context with \`kubectl config set-context --current --namespace=namespace\`'
 alias kpreprod='gcloud container clusters get-credentials delivery-platform --zone europe-west4-a --project at-delivery-platform-preprod && echo Find namespace with \`kubectl get namespace\` then set context with \`kubectl config set-context --current --namespace=namespace\`'
 
+# pyenv and jenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# Google Cloud SDK PATH and gcloud command completion
+if [ -f '/Users/Philippa.Main/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/Philippa.Main/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/Philippa.Main/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/Philippa.Main/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Load Git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit && compinit
