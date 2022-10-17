@@ -126,12 +126,11 @@ source $ZSH/oh-my-zsh.sh
 #
 # jdk 11
 
-# Added by Google Cloud installer
-# Added by Google Cloud installer
-# For investigating Kubernetes pods
+# For investigating Kubernetes pods, helm etc.
 alias k='kubectl'
 alias kprod='gcloud container clusters get-credentials delivery-platform --zone europe-west4-a --project at-delivery-platform-prod && echo Find namespace with \`kubectl get namespace\` then set context with \`kubectl config set-context --current --namespace=namespace\`'
 alias kpreprod='gcloud container clusters get-credentials delivery-platform --zone europe-west4-a --project at-delivery-platform-preprod && echo Find namespace with \`kubectl get namespace\` then set context with \`kubectl config set-context --current --namespace=namespace\`'
+export PATH="$PATH:/Users/Philippa.Main/istio-1.15.0/bin"
 
 # pyenv and jenv
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -145,6 +144,18 @@ if [ -f '/Users/Philippa.Main/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/P
 if [ -f '/Users/Philippa.Main/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/Philippa.Main/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Load Git completion
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-fpath=(~/.zsh $fpath)
-autoload -Uz compinit && compinit
+#zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+#fpath=(~/.zsh $fpath)
+#autoload -Uz compinit && compinit
+
+# Lines added by shippr-cli installer
+if [ $commands[shippr] ]; then
+  source <(shippr completion zsh)
+fi
+# End of lines added by shippr-cli installer
+
+# Created by `pipx` on 2022-08-23 12:31:54
+export PATH="$PATH:/Users/Philippa.Main/.local/bin"
+
+#Golang
+export PATH="$PATH:$HOME/go/bin/:/usr/local/opt/go@1.17/bin"
