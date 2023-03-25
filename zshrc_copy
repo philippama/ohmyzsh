@@ -29,3 +29,8 @@ export PATH="$PATH:/Users/Philippa.Main/istio-1.15.0/bin"
 
 # For platform-helm-at-data-product dependencies
 export PATH="$PATH:/Users/Philippa.Main/Applications/istio-1.16.2/bin"
+
+# Add a directory to hold functions and autoload all functions within the directory
+# To refresh a function’s definition, use `unfunction function_name` before loading it again.
+FPATH=~/.zfunctions:$FPATH
+autoload -Uz ${fpath[1]}/*(:t)
