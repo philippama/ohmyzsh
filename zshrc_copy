@@ -34,3 +34,18 @@ export PATH="$PATH:/Users/Philippa.Main/Applications/istio-1.16.2/bin"
 # To refresh a function’s definition, use `unfunction function_name` before loading it again.
 FPATH=~/.zfunctions:$FPATH
 autoload -Uz ${fpath[1]}/*(:t)
+
+# Airflow client
+export AIRFLOW_HOME=/Users/Philippa.Main/Applications/airflow
+
+
+# Lines added by shippr-cli installer
+export PATH="/Users/Philippa.Main/shippr/bin:$PATH"
+
+if [ $commands[shippr] ];
+then
+  source <(shippr completion zsh)
+fi
+# End of lines added by shippr-cli installer
+export PATH="/opt/homebrew/opt/go@1.20/bin:$PATH"
+export PATH="/Users/Philippa.Main/go/bin:$PATH"
